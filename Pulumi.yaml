@@ -1,0 +1,11 @@
+name: aws-simple
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+description: simple pulumi project for aws
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-python
