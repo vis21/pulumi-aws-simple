@@ -39,7 +39,7 @@ def createSg(vpc):
 
     httpIn = aws.vpc.SecurityGroupIngressRule(
         "http-in",
-        security_group_id=mainSg.id,
+        security_group_id=webSg.id,
         cidr_ipv4="0.0.0.0/0",
         ip_protocol="tcp",
         from_port=80,
@@ -50,7 +50,7 @@ def createSg(vpc):
 
     httpsIn = aws.vpc.SecurityGroupIngressRule(
         "https-in",
-        security_group_id=mainSg.id,
+        security_group_id=webSg.id,
         cidr_ipv4="0.0.0.0/0",
         ip_protocol="tcp",
         from_port=443,

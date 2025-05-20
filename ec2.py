@@ -3,7 +3,7 @@ import pulumi_aws as aws
 
 size = "t3.small"
 rockyImage = "ami-01af7acf3c778d87d"  # rocky 9
-ubuntuImage = "ami-0745b7d4092315796"  # ubuntu 22.04 - to be checked
+ubuntuImage = "ami-0745b7d4092315796"  # ubuntu 22.04
 os_type = "ubuntu"  # can either be 'ubuntu' or 'rocky'
 
 def createKp():
@@ -17,7 +17,7 @@ def createKp():
     return customKp
 
 
-def createMultipleEc2(instances, subnet, mainSg, k8sSg, customKp, os_type):
+def createMultipleEc2(instances, subnet, mainSg, k8sSg, webSg, customKp, os_type):
     ec2_instances = []
 
     for i in range(instances):
@@ -31,7 +31,7 @@ def createMultipleEc2(instances, subnet, mainSg, k8sSg, customKp, os_type):
             instance_type=size,
             ami=ami,
             subnet_id=subnet.id,
-            vpc_security_group_ids=[mainSg.id, k8sSg.id],
+            vpc_security_group_ids=[mainSg.id, k8sSg.id, webSg.id],
             key_name=customKp.id,
             ebs_block_devices=[{
                 "device_name": "/dev/sda1",

@@ -11,7 +11,7 @@ mainSg, k8sSg, webSg = createSg(vpc)
 
 # Launch EC2 instance
 keyPair = createKp()
-ec2_instances = createMultipleEc2(2, subnet, mainSg, k8sSg, keyPair, os_type)
+ec2_instances = createMultipleEc2(2, subnet, mainSg, k8sSg, webSg, keyPair, os_type)
 eip_associations = createEip(ec2_instances)
 
 # Extract public IP addresses
